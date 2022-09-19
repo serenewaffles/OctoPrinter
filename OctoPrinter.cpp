@@ -8,7 +8,15 @@ OctoPrinter::OctoPrinter(String apiKey, String hostAddress, int port) {
   _hostAddress = hostAddress;
   _port = port;
   _host.fromString(hostAddress);
-  _parseSystem(_requester("/api/version"));
+  _doOnce = false;
+}
+
+void OctoPrinter::begin() {
+  if (!_doOnce) {
+    _parseSystem(_requester("/api/version"));
+    update();
+    _doOnce = true;
+  }
 }
 
 void OctoPrinter::update() {

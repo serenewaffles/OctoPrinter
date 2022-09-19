@@ -25,6 +25,7 @@ class OctoPrinter {
 public:
   OctoPrinter(String key, String host, int port);
   void update();
+  void begin();
 
   /* 
     These functions are used to check on the printer's status flags.
@@ -87,6 +88,7 @@ private:
   IPAddress _host;
   String _hostAddress;
   int _port;
+  bool _doOnce;
 
   struct {
     String _apiVersion;
