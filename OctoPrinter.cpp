@@ -21,9 +21,11 @@ void OctoPrinter::begin() {
 
 void OctoPrinter::update() {
   _parseConnection(_requester("/api/connection"));
-  _parsePrinter(_requester("/api/printer?exclude=sd"));
-  if (_is._printing) {
-    _parseJob(_requester("/api/job"));
+  if (!_is._closed) {
+    _parsePrinter(_requester("/api/printer?exclude=sd"));
+    if (_is._printing) {
+      _parseJob(_requester("/api/job"));
+    }
   }
 }
 
