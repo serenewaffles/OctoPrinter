@@ -68,6 +68,9 @@ public:
   double bedActual();
   int bedTarget();
   int bedOffset();
+  double chamberActual();
+  int chamberTarget();
+  int chamberOffset();
 
 private:
   WiFiClient _client;
@@ -107,6 +110,7 @@ private:
     bool _closedOrError;
   } _is;
   temperatureTracker _bed;
+  temperatureTracker _chamber;
   temperatureTracker _tool;
 };
 
