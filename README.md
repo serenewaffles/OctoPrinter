@@ -22,10 +22,10 @@ void setup() {
     while(WiFi.status() != WL_CONNECTED) {
         delay(500);
     }
+    printerName.begin();
 }
 
 void loop() {
-    printerName.update();
     Serial.print("Nozzle temperature actual/target: ");
     Serial.print(printerName.toolActual());
     Serial.print("/");
