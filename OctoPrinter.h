@@ -62,6 +62,7 @@ public:
   int bedOffset();
 
 private:
+  WiFiClient _client;
   void _setTime(int, int);
   String _requester(String);
   String _poster(String, String);
@@ -73,7 +74,7 @@ private:
   IPAddress _host;
   String _hostAddress;
   int _port;
-  
+
   bool _doOnce;
 
   struct {

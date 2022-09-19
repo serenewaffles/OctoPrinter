@@ -3,8 +3,6 @@
 #include "WiFi.h"
 #include "ArduinoJson.h"
 
-extern WiFiClient client;
-
 OctoPrinter::OctoPrinter(String apiKey, String hostAddress, int port) {
   _apiKey = apiKey;
   _hostAddress = hostAddress;
@@ -141,59 +139,59 @@ void OctoPrinter::_setTime(int elapsed, int remaining) {
 }
 
 String OctoPrinter::_requester(String uri) {
-  if (!client.connect(_host, _port)) {
+  if (!_client.connect(_host, _port)) {
     return "";
   } else {
-    client.println("GET " + uri + " HTTP/1.1");
-    client.println("Host: " + _hostAddress);
-    client.println("Cache-Control: no-cache");
-    client.println("X-Api-Key: " + _apiKey);
-    client.println("");
+    _client.println("GET " + uri + " HTTP/1.1");
+    _client.println("Host: " + _hostAddress);
+    _client.println("Cache-Control: no-cache");
+    _client.println("X-Api-Key: " + _apiKey);
+    _client.println("");
 
-    while (client.connected()) {
-      String line = client.readStringUntil('\n');
+    while (_client.connected()) {
+      String line = _client.readStringUntil('\n');
       // Serial.println(line);
       if (line == "\r") {
         break;
       }
     }
     String response;
-    while (client.available()) {
-      response = client.readString();
+    while (_client.available()) {
+      response = _client.readString();
     }
-    client.stop();
+    _client.stop();
     // Serial.println(response);
     return response;
   }
 }
 
 String OctoPrinter::_poster(String uri, String body) {
-  if (!client.connect(_host, _port)) {
+  if (!_client.connect(_host, _port)) {
     return "ERROR";
   } else {
-    client.println("POST " + uri + " HTTP/1.1");
-    client.println("Host: " + _hostAddress);
-    client.println("Cache-Control: no-cache");
-    client.println("X-Api-Key: " + _apiKey);
-    client.println("Content-Type: application/json");
-    client.print("Content-Length: ");
-    client.println(body.length());
-	client.println("");
-    client.println(body);
-    client.println("");
+    _client.println("POST " + uri + " HTTP/1.1");
+    _client.println("Host: " + _hostAddress);
+    _client.println("Cache-Control: no-cache");
+    _client.println("X-Api-Key: " + _apiKey);
+    _client.println("Content-Type: application/json");
+    _client.print("Content-Length: ");
+    _client.println(body.length());
+    _client.println("");
+    _client.println(body);
+    _client.println("");
 
     String response;
-    while (client.connected()) {
-      String line = client.readStringUntil('\n');
+    while (_client.connected()) {
+      String line = _client.readStringUntil('\n');
       if (line.startsWith("HTTP")) {
         response = line.substring(9, 12);
       }
-	  if (line == "\r") {
-		  break;
-	  }
+      if (line == "\r") {
+        break;
+      }
     }
 
-    client.stop();
+    _client.stop();
     return response;
   }
 }
