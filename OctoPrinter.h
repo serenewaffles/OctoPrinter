@@ -88,8 +88,6 @@ private:
   String _hostAddress;
   int _port;
 
-  bool _doOnce;
-
   struct {
     String _apiVersion;
     String _serverVersion;
