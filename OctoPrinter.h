@@ -109,6 +109,11 @@ private:
     bool _ready;
     bool _closedOrError;
   } _is;
+  struct {
+    bool _heatedBed;
+    bool _heatedChamber;
+    int _toolCout;
+  } _has;
   temperatureTracker _bed;
   temperatureTracker _chamber;
   temperatureTracker _tool;
