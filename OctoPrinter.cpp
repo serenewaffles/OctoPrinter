@@ -259,6 +259,19 @@ void OctoPrinter::_parseJob(String json) {
   _job._fileName = file["name"];
 }
 
+String OctoPrinter::_parseConnection(String json) {
+  char* input = &json[0u];
+  StaticJsonDocument<768> doc;
+  DeserializationError error = deserializeJson(doc, input, json.length());
+
+  if (error) {
+    return "";
+  }
+  const char* currentPrinterProfile = doc["printerProfile"];
+  String response = String(currentPrinterProfile);
+  return response;
+}
+
 String OctoPrinter::serverVersion() {
   return _server._serverVersion;
 }
