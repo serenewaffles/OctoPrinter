@@ -26,7 +26,10 @@ public:
   OctoPrinter(String key, String host, int port);
   void update();
 
-  //status related functions
+  /* 
+    These functions are used to check on the printer's status flags.
+    All they do is return the state of the boolean flag.
+  */
   bool operational();
   bool paused();
   bool printing();
@@ -41,7 +44,12 @@ public:
   String fileName();
   double progress();
 
-  //control jobs
+  /*
+    Functions to control jobs.
+    These each return the HTTP status code from the server. As OctoPrint's
+    API is incapable of waiting for the printer response without holding
+    the entire webserver, we won't get more information than that.
+  */
   int startJob();
   int cancelJob();
   int restartJob();
