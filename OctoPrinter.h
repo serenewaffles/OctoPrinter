@@ -80,6 +80,8 @@ private:
   void _parsePrinter(String);
   void _parseSystem(String);
   void _parseJob(String);
+  void _parseConnection(String);
+  void _parseProfile(String);
 
   String _apiKey;
   IPAddress _host;
