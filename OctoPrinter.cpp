@@ -178,6 +178,7 @@ String OctoPrinter::_poster(String uri, String body) {
     client.println("Content-Type: application/json");
     client.print("Content-Length: ");
     client.println(body.length());
+	client.println("");
     client.println(body);
     client.println("");
 
@@ -185,8 +186,11 @@ String OctoPrinter::_poster(String uri, String body) {
     while (client.connected()) {
       String line = client.readStringUntil('\n');
       if (line.startsWith("HTTP")) {
-        response = line.substring(9, 11);
+        response = line.substring(9, 12);
       }
+	  if (line == "\r") {
+		  break;
+	  }
     }
 
     client.stop();
@@ -270,16 +274,16 @@ double OctoPrinter::progress() {
 }
 
 int OctoPrinter::startJob() {
-  String response = _poster("/api/job", "{\"command\": \"start\"");
+  String response = _poster("/api/job", "{\"command\": \"start\"}");
   return response.toInt();
 }
 
 int OctoPrinter::cancelJob() {
-  String response = _poster("/api/job", "{\"command\": \"cancel\"");
+  String response = _poster("/api/job", "{\"command\": \"cancel\"}");
   return response.toInt();
 }
 
 int OctoPrinter::restartJob() {
-  String response = _poster("/api/job", "{\"command\": \"restart\"");
+  String response = _poster("/api/job", "{\"command\": \"restart\"}");
   return response.toInt();
 }
