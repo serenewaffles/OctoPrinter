@@ -38,6 +38,7 @@ public:
   bool pausing();
   bool error();
   bool ready();
+  bool closed();
   bool closedOrError();
 
   //give job related information
@@ -109,6 +110,7 @@ private:
     bool _pausing;
     bool _error;
     bool _ready;
+    bool _closed;
     bool _closedOrError;
   } _is;
   struct {

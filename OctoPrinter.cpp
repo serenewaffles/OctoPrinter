@@ -20,6 +20,7 @@ void OctoPrinter::begin() {
 }
 
 void OctoPrinter::update() {
+  _parseConnection(_requester("/api/connection"));
   _parsePrinter(_requester("/api/printer?exclude=sd"));
   if (_is._printing) {
     _parseJob(_requester("/api/job"));
@@ -272,6 +273,13 @@ String OctoPrinter::_parseConnection(String json) {
     return "";
   }
   const char* currentPrinterProfile = doc["printerProfile"];
+  JsonObject current = doc["current"];
+  const char* currentState = current["state"];
+  if (String(currentState) == "Closed") {
+    _is._closed = true;
+  } else {
+    _is._closed = false;
+  }
   String response = String(currentPrinterProfile);
   return response;
 }
@@ -286,6 +294,10 @@ String OctoPrinter::apiVersion() {
 
 double OctoPrinter::progress() {
   return _job._progress;
+}
+
+bool OctoPrinter::closed() {
+  return _is._closed;
 }
 
 int OctoPrinter::startJob() {
