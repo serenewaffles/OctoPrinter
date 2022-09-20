@@ -64,8 +64,11 @@ class OctoPrinter {
         bool toggleJobPauseState();
   
         /*
-    
+            This is for sending arbitrary gCode to the printer.
+            It suffers the same limitations as the above functions.
         */
+        bool gCode(String);
+
         //give server related information
         String serverVersion();
         String apiVersion();
@@ -81,7 +84,6 @@ class OctoPrinter {
         int chamberTarget();
         int chamberOffset();
     
-        bool gCode(String);
     
     private:
         WiFiClient _client;
