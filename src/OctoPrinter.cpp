@@ -323,3 +323,10 @@ bool OctoPrinter::pauseJob() {
     if (response.toInt() == 204) return true;
     else return false;
 }
+
+bool OctoPrinter::resumeJob() {
+    String response = _poster("/api/jobe", "{\"command\": \"pause\",\"action\": \"resume\"}");
+    if (response.toInt() == 204) return true;
+    else return false;
+}
+
