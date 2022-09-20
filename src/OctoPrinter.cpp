@@ -335,3 +335,9 @@ bool OctoPrinter::toggleJobPauseState() {
     if (response.toInt() == 204) return true;
     else return false;
 }
+
+bool OctoPrinter::gCode(String command) {
+    String response = _poster("/api/printer/command", "{\"command\":\"" + command + "\"");
+    if (response.toInt() == 204) return true;
+    else return false;
+}
