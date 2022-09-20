@@ -330,3 +330,8 @@ bool OctoPrinter::resumeJob() {
     else return false;
 }
 
+bool OctoPrinter::toggleJobPauseState() {
+    String response = _poster("/api/jobe", "{\"command\": \"pause\",\"action\": \"toggle\"}");
+    if (response.toInt() == 204) return true;
+    else return false;
+}
