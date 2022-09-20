@@ -52,12 +52,12 @@ public:
     API is incapable of waiting for the printer response without holding
     the entire webserver, we won't get more information than that.
   */
-  int startJob();
-  int cancelJob();
-  int restartJob();
-  int pauseJob();
-  int resumeJob();
-  int toggleJobPauseState();
+  bool startJob();
+  bool cancelJob();
+  bool restartJob();
+  bool pauseJob();
+  bool resumeJob();
+  bool toggleJobPauseState();
 
   //give server related information
   String serverVersion();
@@ -73,6 +73,8 @@ public:
   double chamberActual();
   int chamberTarget();
   int chamberOffset();
+  
+  bool gCode(String);
 
 private:
   WiFiClient _client;
