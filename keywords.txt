@@ -1,15 +1,31 @@
+###########
+#DATATYPES#
+###########
 OctoPrinter	KEYWORD1
+
+###########
+#FUNCTIONS#
+###########
 update	KEYWORD2
+begin	KEYWORD2
 operational	KEYWORD2
 paused	KEYWORD2
+printing	KEYWORD2
 cancelling	KEYWORD2
 pausing	KEYWORD2
 error	KEYWORD2
 ready	KEYWORD2
+closed	KEYWORD2
 closedOrError	KEYWORD2
 remainingFormatted	KEYWORD2
 fileName	KEYWORD2
 progress	KEYWORD2
+startJob	KEYWORD2
+cancelJob	KEYWORD2
+restartJob	KEYWORD2
+pauseJob	KEYWORD2
+resumeJob	KEYWORD2
+toggleJobPauseState	KEYWORD2
 serverVersion	KEYWORD2
 apiVersion	KEYWORD2
 toolActual	KEYWORD2
@@ -18,3 +34,11 @@ toolOffset	KEYWORD2
 bedActual	KEYWORD2
 bedTarget	KEYWORD2
 bedOffset	KEYWORD2
+chamberActual	KEYWORD2
+chamberTarget	KEYWORD2
+chamberOffset	KEYWORD2
+gCode	KEYWORD2
+
+############
+#STRUCTURES#
+############
