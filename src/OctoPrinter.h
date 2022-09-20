@@ -67,7 +67,7 @@ class OctoPrinter {
             This is for sending arbitrary gCode to the printer.
             It suffers the same limitations as the above functions.
         */
-        bool gCode(String);
+        bool sendGCode(String);
 
         //give server related information
         String serverVersion();
