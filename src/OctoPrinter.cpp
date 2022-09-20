@@ -302,17 +302,20 @@ bool OctoPrinter::closed() {
   return _is._closed;
 }
 
-int OctoPrinter::startJob() {
+bool OctoPrinter::startJob() {
   String response = _poster("/api/job", "{\"command\": \"start\"}");
-  return response.toInt();
+  if (response.toInt() == 204) return true;
+  else return false;
 }
 
-int OctoPrinter::cancelJob() {
+bool OctoPrinter::cancelJob() {
   String response = _poster("/api/job", "{\"command\": \"cancel\"}");
-  return response.toInt();
+  if (response.toInt() == 204) return true;
+  else return false;
 }
 
-int OctoPrinter::restartJob() {
+bool OctoPrinter::restartJob() {
   String response = _poster("/api/job", "{\"command\": \"restart\"}");
-  return response.toInt();
+  if (response.toInt() == 204) return true;
+  else return false;
 }
