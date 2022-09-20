@@ -48,9 +48,13 @@ public:
 
   /*
     Functions to control jobs.
-    These each return the HTTP status code from the server. As OctoPrint's
-    API is incapable of waiting for the printer response without holding
-    the entire webserver, we won't get more information than that.
+    These will only return true on successful command, or false
+	if OctoPrint gives us anything other than an HTTP 204.
+	
+	To read more about OctoPrint's REST API limitation visit:
+	https://docs.octoprint.org/en/master/api/printer.html
+	
+	The relevant note is just above "Retrieve the current printer state"
   */
   bool startJob();
   bool cancelJob();
