@@ -1,3 +1,5 @@
+[![Library Lint](https://github.com/serenewaffles/OctoPrinter/actions/workflows/arduino-lint.yaml/badge.svg?branch=main)](https://github.com/serenewaffles/OctoPrinter/actions/workflows/arduino-lint.yaml)
+
 # OctoPrinter
 
 ### Description
